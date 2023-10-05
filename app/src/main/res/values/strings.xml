@@ -10,7 +10,9 @@
     <string name="card_title_patients">List of patients</string>
     <string name="card_title_touch">Touch events</string>
     <string name="card_title_sensor">List of sensors</string>
+    <string name="card_title_practice">Ejemplo XML Activity</string>
     <string name="card_desc_patients">Activity with ListView and custom adapters. CRUD of patients.</string>
     <string name="card_desc_touch">Activity with the listener of several touch events.</string>
     <string name="card_desc_sensor">Activity with the list of the sensors presents in the device.</string>
+    <string name="card_desc_practice">El ejemplo cuenta con un EditText, Button y una lista que almacena lo que guardas</string>
 </resources>

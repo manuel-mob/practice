@@ -20,12 +20,15 @@ class MainActivity : AppCompatActivity() {
         val card1View = findViewById<View>(R.id.card1)
         val card2View = findViewById<View>(R.id.card2)
         val card3View = findViewById<View>(R.id.card3)
+        val card4View = findViewById<View>(R.id.card4)
         card1View.findViewById<TextView>(R.id.cardTextViewTitle).setText(R.string.card_title_patients)
         card2View.findViewById<TextView>(R.id.cardTextViewTitle).setText(R.string.card_title_touch)
         card3View.findViewById<TextView>(R.id.cardTextViewTitle).setText(R.string.card_title_sensor)
+        card4View.findViewById<TextView>(R.id.cardTextViewTitle).setText(R.string.card_title_practice)
         card1View.findViewById<TextView>(R.id.cardTextViewDescription).setText(R.string.card_desc_patients)
         card2View.findViewById<TextView>(R.id.cardTextViewDescription).setText(R.string.card_desc_touch)
         card3View.findViewById<TextView>(R.id.cardTextViewDescription).setText(R.string.card_desc_sensor)
+        card4View.findViewById<TextView>(R.id.cardTextViewDescription).setText(R.string.card_desc_practice)
         card1View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener{ view ->
             goPatientApp(view)
         }
@@ -34,6 +37,9 @@ class MainActivity : AppCompatActivity() {
         }
         card3View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener{ view ->
             goSensorApp(view)
+        }
+        card4View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener{ view ->
+            goCreatePatientPractice(view)
         }
 
     }
@@ -49,6 +55,11 @@ class MainActivity : AppCompatActivity() {
     fun goSensorApp(view: View) {
         val sensorApp = Intent(this, SensorDetectionActivity::class.java)
         startActivity(sensorApp)
+    }
+
+    fun goCreatePatientPractice(view: View) {
+        val createActivity = Intent(this, CreatePatient::class.java)
+        startActivity(createActivity)
     }
 
     fun goTabApp(view: View) {
