@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Patients</string>
+    <string name="button_go_patient_apps">App Patients</string>
+    <string name="button_go_touch_apps">Touch Event App</string>
+    <string name="button_go_sensor_apps">Sensor App</string>
+    <string name="title_activity_inventory">Inventory</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+
+    <string name="card_title_patients">List of patients</string>
+    <string name="card_title_touch">Touch events</string>
+    <string name="card_title_sensor">List of sensors</string>
+    <string name="card_desc_patients">Activity with ListView and custom adapters. CRUD of patients.</string>
+    <string name="card_desc_touch">Activity with the listener of several touch events.</string>
+    <string name="card_desc_sensor">Activity with the list of the sensors presents in the device.</string>
+</resources>
