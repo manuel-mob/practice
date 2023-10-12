@@ -22,16 +22,19 @@ class MainActivity : AppCompatActivity() {
         val card3View = findViewById<View>(R.id.card3)
         val card4View = findViewById<View>(R.id.card4)
         val card5View = findViewById<View>(R.id.card5)
+        val card6View = findViewById<View>(R.id.card6)
         card1View.findViewById<TextView>(R.id.cardTextViewTitle).setText(R.string.card_title_patients)
         card2View.findViewById<TextView>(R.id.cardTextViewTitle).setText(R.string.card_title_touch)
         card3View.findViewById<TextView>(R.id.cardTextViewTitle).setText(R.string.card_title_sensor)
         card4View.findViewById<TextView>(R.id.cardTextViewTitle).setText(R.string.card_title_practice)
         card5View.findViewById<TextView>(R.id.cardTextViewTitle).setText(R.string.card_title_mediaplayer)
+        card6View.findViewById<TextView>(R.id.cardTextViewTitle).setText(R.string.card_title_customitem)
         card1View.findViewById<TextView>(R.id.cardTextViewDescription).setText(R.string.card_desc_patients)
         card2View.findViewById<TextView>(R.id.cardTextViewDescription).setText(R.string.card_desc_touch)
         card3View.findViewById<TextView>(R.id.cardTextViewDescription).setText(R.string.card_desc_sensor)
         card4View.findViewById<TextView>(R.id.cardTextViewDescription).setText(R.string.card_desc_practice)
         card5View.findViewById<TextView>(R.id.cardTextViewDescription).setText(R.string.card_desc_mediaplayer)
+        card6View.findViewById<TextView>(R.id.cardTextViewDescription).setText(R.string.card_desc_customitem)
 
         card1View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener{ view ->
             goPatientApp(view)
@@ -47,6 +50,9 @@ class MainActivity : AppCompatActivity() {
         }
         card5View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener { view ->
             goMediaPlayerActivity(view)
+        }
+        card6View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener { view ->
+            goCustomItemPatientActivity(view)
         }
     }
 
@@ -76,5 +82,10 @@ class MainActivity : AppCompatActivity() {
     fun goMediaPlayerActivity(view: View) {
         val media = Intent(this, MediaActivity::class.java)
         startActivity(media)
+    }
+
+    fun goCustomItemPatientActivity(view: View) {
+        val customItem = Intent(this, PatientListCustomItem::class.java)
+        startActivity(customItem)
     }
 }
