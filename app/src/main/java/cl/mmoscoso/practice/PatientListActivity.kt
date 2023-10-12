@@ -2,9 +2,13 @@ package cl.mmoscoso.practice
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.ContextMenu
+import android.view.MenuItem
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import cl.mmoscoso.practice.adapters.PatientDetailDialog
 import cl.mmoscoso.practice.adapters.PatientListAdapter
@@ -59,10 +63,42 @@ class PatientListActivity : AppCompatActivity() {
             else {
                 val intent = Intent(this, PatientDetailActivity::class.java)
                 intent.putExtra("patient", selectedPatient)
+
                 startActivity(intent)
             }
         }
+        registerForContextMenu(listViewPatients)
     }
+
+    override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
+        super.onCreateContextMenu(menu, v, menuInfo)
+        menuInflater.inflate(R.menu.patient_list_menu, menu)
+    }
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_edit -> {
+                // Handle the "Edit" option
+                val intent = Intent(this, PatientEditActivity::class.java)
+                val info = item.menuInfo as AdapterView.AdapterContextMenuInfo
+                val position = info.position
+                intent.putExtra("patient",patients.get(position))
+                intent.putExtra("position",position)
+                startActivityForResult(intent, REQUEST_EDITER)
+                true
+            }
+            R.id.action_delete -> {
+                // Handle the "Delete" option
+                // Show the confirmation dialog when "Delete" is selected
+                val info = item.menuInfo as AdapterView.AdapterContextMenuInfo
+                val position = info.position
+                showDeleteConfirmationDialog(position)
+                true
+            }
+            // Add cases for other options as needed
+            else -> super.onContextItemSelected(item)
+        }
+    }
+
     fun changeAdapter(view: View) {
         if (listOption) {
             adapterItems = PatientListAdapter(this, R.layout.list_item_patient, patients)
@@ -86,6 +122,25 @@ class PatientListActivity : AppCompatActivity() {
         dialog.show()
     }
 
+    private fun showDeleteConfirmationDialog(itemPosition: Int) {
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage(R.string.message_delete_patient)
+        builder.setPositiveButton(R.string.btn_delete) { dialog, which ->
+            // Handle the delete action here
+            deleteItem(itemPosition)
+        }
+        builder.setNegativeButton(R.string.btn_cancel) { dialog, which ->
+            dialog.dismiss()
+        }
+        builder.create().show()
+    }
+
+    private fun deleteItem(itemPosition: Int) {
+        patients.removeAt(itemPosition)
+        adapterItems.notifyDataSetChanged()
+    }
+
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -95,9 +150,20 @@ class PatientListActivity : AppCompatActivity() {
                 patients.add(newPatient)
                 if (listOption) {
 
-                }
+                      }
                 adapterItems.notifyDataSetChanged()
             }
+        }
+        if (requestCode == REQUEST_EDITER && resultCode == RESULT_OK) {
+            val editedPatient = data?.getParcelableExtra<Patient>("patient")
+            val position = data!!.getIntExtra("position",-1)
+
+            if (position != -1) {
+                if (editedPatient != null) {
+                    patients.set(position,editedPatient)
+                }
+            }
+            adapterItems.notifyDataSetChanged()
         }
     }
 

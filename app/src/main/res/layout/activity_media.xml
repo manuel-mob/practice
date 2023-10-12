@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:padding="16dp"
+tools:context=".MediaActivity">
+
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp" />
+
+    <TextView
+        android:id="@+id/tvCurrentTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/seekBar"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:text="0:00" />
+<Button
+    android:id="@+id/playButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Play"/>
+
+<Button
+    android:id="@+id/stopButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Stop"/>
+
+<Button
+    android:id="@+id/pauseButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Pause"/>
+
+<Button
+    android:id="@+id/loopButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Loop"/>
+
+<Button
+    android:id="@+id/speedUpButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Speed Up"/>
+
+<Button
+    android:id="@+id/speedDownButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Speed Down"/>
+</LinearLayout>

@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Patients"
         tools:targetApi="31">
         <activity
+            android:name=".MediaActivity"
+            android:exported="false" />
+        <activity
             android:name=".CreatePatient"
             android:exported="false" />
         <activity

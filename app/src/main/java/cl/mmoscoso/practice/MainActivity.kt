@@ -21,14 +21,18 @@ class MainActivity : AppCompatActivity() {
         val card2View = findViewById<View>(R.id.card2)
         val card3View = findViewById<View>(R.id.card3)
         val card4View = findViewById<View>(R.id.card4)
+        val card5View = findViewById<View>(R.id.card5)
         card1View.findViewById<TextView>(R.id.cardTextViewTitle).setText(R.string.card_title_patients)
         card2View.findViewById<TextView>(R.id.cardTextViewTitle).setText(R.string.card_title_touch)
         card3View.findViewById<TextView>(R.id.cardTextViewTitle).setText(R.string.card_title_sensor)
         card4View.findViewById<TextView>(R.id.cardTextViewTitle).setText(R.string.card_title_practice)
+        card5View.findViewById<TextView>(R.id.cardTextViewTitle).setText(R.string.card_title_mediaplayer)
         card1View.findViewById<TextView>(R.id.cardTextViewDescription).setText(R.string.card_desc_patients)
         card2View.findViewById<TextView>(R.id.cardTextViewDescription).setText(R.string.card_desc_touch)
         card3View.findViewById<TextView>(R.id.cardTextViewDescription).setText(R.string.card_desc_sensor)
         card4View.findViewById<TextView>(R.id.cardTextViewDescription).setText(R.string.card_desc_practice)
+        card5View.findViewById<TextView>(R.id.cardTextViewDescription).setText(R.string.card_desc_mediaplayer)
+
         card1View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener{ view ->
             goPatientApp(view)
         }
@@ -41,7 +45,9 @@ class MainActivity : AppCompatActivity() {
         card4View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener{ view ->
             goCreatePatientPractice(view)
         }
-
+        card5View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener { view ->
+            goMediaPlayerActivity(view)
+        }
     }
 
     fun goPatientApp(view: View) {
@@ -65,5 +71,10 @@ class MainActivity : AppCompatActivity() {
     fun goTabApp(view: View) {
         val inventory = Intent(this, Inventory::class.java)
         startActivity(inventory)
+
+    }
+    fun goMediaPlayerActivity(view: View) {
+        val media = Intent(this, MediaActivity::class.java)
+        startActivity(media)
     }
 }

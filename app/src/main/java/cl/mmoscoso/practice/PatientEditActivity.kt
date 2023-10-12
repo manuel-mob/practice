@@ -29,7 +29,7 @@ class PatientEditActivity : AppCompatActivity() {
         buttonSaveChanges = findViewById(R.id.buttonSave)
 
         // Retrieve the patient object passed from the previous activity
-        //patient = intent.getParcelableExtra("patient")
+        patient = intent.getParcelableExtra("patient")!!
 
         // Populate EditText fields with the patient's current information
         editTextName.setText(patient.name)
@@ -54,7 +54,8 @@ class PatientEditActivity : AppCompatActivity() {
 
             // Pass the updated patient object back to the previous activity
             val resultIntent = Intent()
-            //resultIntent.putExtra("updatedPatient", patient)
+            resultIntent.putExtra("patient", patient)
+            resultIntent.putExtra("position",intent.getIntExtra("position",0))
             setResult(RESULT_OK, resultIntent)
             finish() // Close the editing activity and return to the previous activity
         }

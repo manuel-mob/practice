@@ -16,6 +16,7 @@ data class Patient(
         parcel.readString(),
         parcel.readInt(),
         parcel.createStringArrayList() ?: emptyList()
+
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
