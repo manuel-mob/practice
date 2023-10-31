@@ -14,6 +14,13 @@ class MediaActivity : AppCompatActivity() {
     private lateinit var mediaPlayer: MediaPlayer
     private lateinit var seekBar: SeekBar
     private lateinit var tvCurrentTime: TextView
+    private lateinit var playButton : Button
+    private lateinit var pauseButton : Button
+    private lateinit var stopButton : Button
+    private lateinit var loopButton : Button
+    private lateinit var speedUpButton : Button
+    private lateinit var speedDownButton : Button
+
     private var playbackParams: PlaybackParams? = null
     private var isSeeking = false
     private val handler = Handler()
@@ -22,12 +29,23 @@ class MediaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_media)
 
-        mediaPlayer = MediaPlayer.create(this, R.raw.kickstarter)
+
+
+        mediaPlayer = MediaPlayer.create(this, R.raw.welcome)
+        mediaPlayer.start()
+
         playbackParams = mediaPlayer.playbackParams
+
+
         // Initialize UI elements
         seekBar = findViewById(R.id.seekBar)
         tvCurrentTime = findViewById(R.id.tvCurrentTime)
-
+        playButton = findViewById<Button>(R.id.playButton)
+        stopButton = findViewById<Button>(R.id.stopButton)
+        pauseButton = findViewById<Button>(R.id.pauseButton)
+        loopButton = findViewById<Button>(R.id.loopButton)
+        speedUpButton = findViewById<Button>(R.id.speedUpButton)
+        speedDownButton = findViewById<Button>(R.id.speedDownButton)
 
         // Set up the SeekBar
         seekBar.max = mediaPlayer.duration
@@ -48,7 +66,7 @@ class MediaActivity : AppCompatActivity() {
         })
 
 
-        val playButton = findViewById<Button>(R.id.playButton)
+
         playButton.setOnClickListener {
             if (!mediaPlayer.isPlaying) {
                 mediaPlayer.start()
@@ -56,7 +74,7 @@ class MediaActivity : AppCompatActivity() {
             }
         }
 
-        val stopButton = findViewById<Button>(R.id.stopButton)
+
         stopButton.setOnClickListener {
             if (mediaPlayer.isPlaying) {
                 mediaPlayer.pause()
@@ -65,7 +83,7 @@ class MediaActivity : AppCompatActivity() {
             }
         }
 
-        val pauseButton = findViewById<Button>(R.id.pauseButton)
+
         pauseButton.setOnClickListener {
             if (mediaPlayer.isPlaying) {
                 mediaPlayer.pause()
@@ -73,19 +91,19 @@ class MediaActivity : AppCompatActivity() {
             }
         }
 
-        val loopButton = findViewById<Button>(R.id.loopButton)
+
         loopButton.setOnClickListener {
             mediaPlayer.isLooping = !mediaPlayer.isLooping
         }
 
-        val speedUpButton = findViewById<Button>(R.id.speedUpButton)
+
         speedUpButton.setOnClickListener {
             //mediaPlayer.playbackParams.speed += 0.5f
             changePlaybackSpeed(0.5f)
 
         }
 
-        val speedDownButton = findViewById<Button>(R.id.speedDownButton)
+
         speedDownButton.setOnClickListener {
             //mediaPlayer.playbackParams.speed -= 0.5f
             changePlaybackSpeed(-0.5f)

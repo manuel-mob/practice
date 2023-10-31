@@ -40,7 +40,7 @@ class TouchEventActivity : AppCompatActivity() {
     }
 
     inner class GestureListener : GestureDetector.SimpleOnGestureListener() {
-        override fun onDown(e: MotionEvent): Boolean {
+        /*override fun onDown(e: MotionEvent): Boolean {
             showToast("onDown")
             addToList("onDown")
             return true
@@ -57,7 +57,7 @@ class TouchEventActivity : AppCompatActivity() {
             addToList("onLongPress")
 
         }
-
+        */
         override fun onFling(
             e1: MotionEvent, e2: MotionEvent,
             velocityX: Float, velocityY: Float
@@ -67,6 +67,13 @@ class TouchEventActivity : AppCompatActivity() {
             return true
         }
 
+        override fun onDoubleTap(e: MotionEvent): Boolean {
+            showToast("onDoubleTap")
+            addToList("onDoubleTap")
+            return super.onDoubleTap(e)
+        }
+/*
+
         override fun onScroll(
             e1: MotionEvent, e2: MotionEvent,
             distanceX: Float, distanceY: Float
@@ -74,7 +81,7 @@ class TouchEventActivity : AppCompatActivity() {
             showToast("onScroll")
             addToList("onScroll")
             return true
-        }
+        }*/
     }
 
     private fun showToast(message: String) {

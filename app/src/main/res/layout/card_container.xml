@@ -9,7 +9,6 @@ android:layout_height="match_parent">
         android:orientation="vertical">
 
         <!-- Add your card views here -->
-
         <include
             android:id="@+id/card1"
             layout="@layout/card_view"
@@ -42,6 +41,42 @@ android:layout_height="match_parent">
 
         <include
             android:id="@+id/card6"
+            layout="@layout/card_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <include
+            android:id="@+id/card7"
+            layout="@layout/card_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <include
+            android:id="@+id/card8"
+            layout="@layout/card_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <include
+            android:id="@+id/card9"
+            layout="@layout/card_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <include
+            android:id="@+id/card10"
+            layout="@layout/card_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <include
+            android:id="@+id/card11"
+            layout="@layout/card_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <include
+            android:id="@+id/card12"
             layout="@layout/card_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
