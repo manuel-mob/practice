@@ -15,8 +15,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.card_container)
 
-        val patien1 = Patient("Patient 1", "patient1@example.com", "Room 101", 25, listOf("Fever", "Cough"))
-
         // Access the individual card views by their unique IDs
         val card1View = findViewById<View>(R.id.card1)
         val card2View = findViewById<View>(R.id.card2)
@@ -30,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         val card10View = findViewById<View>(R.id.card10)
         val card11View = findViewById<View>(R.id.card11)
         val card12View = findViewById<View>(R.id.card12)
+        val card13View = findViewById<View>(R.id.card13)
 
         card1View.findViewById<TextView>(R.id.cardTextViewTitle).setText(R.string.card_title_patients)
         card2View.findViewById<TextView>(R.id.cardTextViewTitle).setText(R.string.card_title_touch)
@@ -43,6 +42,7 @@ class MainActivity : AppCompatActivity() {
         card10View.findViewById<TextView>(R.id.cardTextViewTitle).setText(R.string.card_title_lastlocation)
         card11View.findViewById<TextView>(R.id.cardTextViewTitle).setText(R.string.card_title_accelerometer_change_color)
         card12View.findViewById<TextView>(R.id.cardTextViewTitle).setText(R.string.card_title_environment)
+        card13View.findViewById<TextView>(R.id.cardTextViewTitle).setText(R.string.card_title_changer)
 
         card1View.findViewById<TextView>(R.id.cardTextViewDescription).setText(R.string.card_desc_patients)
         card2View.findViewById<TextView>(R.id.cardTextViewDescription).setText(R.string.card_desc_touch)
@@ -56,6 +56,7 @@ class MainActivity : AppCompatActivity() {
         card10View.findViewById<TextView>(R.id.cardTextViewDescription).setText(R.string.card_desc_lastlocation)
         card11View.findViewById<TextView>(R.id.cardTextViewDescription).setText(R.string.card_desc_accelerometer_change_color)
         card12View.findViewById<TextView>(R.id.cardTextViewDescription).setText(R.string.card_desc_environment)
+        card13View.findViewById<TextView>(R.id.cardTextViewDescription).setText(R.string.card_desc_changer)
 
         card1View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener{ view ->
             goPatientApp(view)
@@ -95,6 +96,10 @@ class MainActivity : AppCompatActivity() {
         card12View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener { view ->
             goEnvironmentActivity(view)
         }
+        card13View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener { view ->
+            goChangerActivity(view)
+        }
+
 
 
     }
@@ -158,6 +163,10 @@ class MainActivity : AppCompatActivity() {
     fun goEnvironmentActivity(view: View) {
         val  environmentActivity = Intent(this, EnvironmentSensorsActivity::class.java)
         startActivity(environmentActivity)
+    }
+    fun goChangerActivity(view: View) {
+        val  changerActivity = Intent(this, ChangerActivity::class.java)
+        startActivity(changerActivity)
     }
 
 }
