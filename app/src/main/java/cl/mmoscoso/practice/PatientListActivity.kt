@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.ListView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -22,6 +23,7 @@ class PatientListActivity : AppCompatActivity() {
     private lateinit var patients: MutableList<Patient>
     private lateinit var adapterItems: PatientListAdapter
     private lateinit var adapter : ArrayAdapter<Patient>
+    private lateinit var buttonChange : Button
     companion object {
         const val REQUEST_REGISTER = 1 // You can use any unique code
         const val REQUEST_EDITER = 2 // You can use any unique code
@@ -34,6 +36,13 @@ class PatientListActivity : AppCompatActivity() {
 
         // Initialize UI elements
         listViewPatients = findViewById(R.id.listViewPatients)
+
+        //Button Change
+        buttonChange = findViewById(R.id.buttonChangeApapter)
+
+        buttonChange.setOnClickListener {
+            changeAdapter()
+        }
 
         // Create a sample list of patients (you should replace this with your data source)
         patients = mutableListOf(
@@ -76,6 +85,15 @@ class PatientListActivity : AppCompatActivity() {
     }
     override fun onContextItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
+
+            R.id.action_show -> {
+                //Handle the "Show" option
+                val info = item.menuInfo as AdapterView.AdapterContextMenuInfo
+                val position = info.position
+                showPatientDetailDialog(patients.get(position))
+                true
+            }
+
             R.id.action_edit -> {
                 // Handle the "Edit" option
                 val intent = Intent(this, PatientEditActivity::class.java)
@@ -95,11 +113,13 @@ class PatientListActivity : AppCompatActivity() {
                 true
             }
             // Add cases for other options as needed
-            else -> super.onContextItemSelected(item)
+            else -> {
+                super.onContextItemSelected(item)
+            }
         }
     }
 
-    fun changeAdapter(view: View) {
+    fun changeAdapter() {
         if (listOption) {
             adapterItems = PatientListAdapter(this, R.layout.list_item_patient, patients)
             listViewPatients.adapter = adapterItems
@@ -112,7 +132,7 @@ class PatientListActivity : AppCompatActivity() {
         listOption = !listOption
     }
 
-    fun goCreatePatient(view: View) {
+    fun goCreatePatient() {
         val intent = Intent(this, PatientRegistrationActivity::class.java)
         startActivityForResult(intent, REQUEST_REGISTER)
     }
@@ -125,11 +145,11 @@ class PatientListActivity : AppCompatActivity() {
     private fun showDeleteConfirmationDialog(itemPosition: Int) {
         val builder = AlertDialog.Builder(this)
         builder.setMessage(R.string.message_delete_patient)
-        builder.setPositiveButton(R.string.btn_delete) { dialog, which ->
+        builder.setPositiveButton(R.string.btn_delete) { dialog, itemPosition ->
             // Handle the delete action here
             deleteItem(itemPosition)
         }
-        builder.setNegativeButton(R.string.btn_cancel) { dialog, which ->
+        builder.setNegativeButton(R.string.btn_cancel) { dialog, _ ->
             dialog.dismiss()
         }
         builder.create().show()

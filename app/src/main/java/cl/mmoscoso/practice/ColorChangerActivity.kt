@@ -9,6 +9,7 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 
@@ -55,6 +56,7 @@ class ColorChangerActivity : AppCompatActivity() , SensorEventListener {
             val threshold = 10.0f
 
             if (acceleration > threshold) {
+                Log.i("ValidacionOnSensorChange",acceleration.toString()  + " > " + threshold.toString())
                 // Change the background color to black
                 mainLayout.setBackgroundColor(Color.BLACK)
             } else {

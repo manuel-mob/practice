@@ -17,24 +17,42 @@ class EnvironmentSensorsActivity : AppCompatActivity() , SensorEventListener {
     private lateinit var txtPressure : TextView
     private lateinit var txtRelativeHumidity : TextView
 
-    private lateinit var ambientTemperatureSensor : Sensor
-    private lateinit var lightSensor : Sensor
-    private lateinit var pressureSensor : Sensor
-    private lateinit var relativeHumiditySensor : Sensor
+    private var ambientTemperatureSensor : Sensor? = null
+    private var lightSensor : Sensor? = null
+    private var pressureSensor : Sensor? = null
+    private var relativeHumiditySensor : Sensor? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_environment_sensors)
 
-        sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        this.sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
 
-        ambientTemperatureSensor = sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE)
+
+        /*ambientTemperatureSensor = sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE)
         lightSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT)
         pressureSensor = sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE)
         relativeHumiditySensor = sensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY)
+*/
+        val sensor: Sensor? = sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE)
+        if (sensor != null) {
+            ambientTemperatureSensor = sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE)
+        }
+        val sensor1 : Sensor? = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT)
+        if (sensor != null) {
+            ambientTemperatureSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT)
+        }
+        val sensor2: Sensor? = sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE)
+        if (sensor != null) {
+            ambientTemperatureSensor = sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE)
+        }
+        val sensor3: Sensor? = sensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY)
+        if (sensor != null) {
+            ambientTemperatureSensor = sensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY)
+        }
 
-        txtAmbientTemperature = findViewById(R.id.valueAmbiente)
+            txtAmbientTemperature = findViewById(R.id.valueAmbiente)
         txtLight  = findViewById(R.id.valueLight)
         txtPressure  = findViewById(R.id.valuePressureSensor)
         txtRelativeHumidity  = findViewById(R.id.valueRelativeHumiditySensor)
@@ -55,18 +73,10 @@ class EnvironmentSensorsActivity : AppCompatActivity() , SensorEventListener {
     }
 
     fun registerSensors(){
-        if (ambientTemperatureSensor != null) {
-            sensorManager.registerListener(this, ambientTemperatureSensor, SensorManager.SENSOR_DELAY_NORMAL)
-        }
-        if (lightSensor != null) {
-            sensorManager.registerListener(this, lightSensor, SensorManager.SENSOR_DELAY_NORMAL)
-        }
-        if (pressureSensor != null) {
-            sensorManager.registerListener(this, pressureSensor, SensorManager.SENSOR_DELAY_NORMAL)
-        }
-        if (relativeHumiditySensor != null) {
-            sensorManager.registerListener(this, relativeHumiditySensor, SensorManager.SENSOR_DELAY_NORMAL)
-        }
+        sensorManager.registerListener(this, ambientTemperatureSensor, SensorManager.SENSOR_DELAY_NORMAL)
+        sensorManager.registerListener(this, lightSensor, SensorManager.SENSOR_DELAY_NORMAL)
+        sensorManager.registerListener(this, pressureSensor, SensorManager.SENSOR_DELAY_NORMAL)
+        sensorManager.registerListener(this, relativeHumiditySensor, SensorManager.SENSOR_DELAY_NORMAL)
     }
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {

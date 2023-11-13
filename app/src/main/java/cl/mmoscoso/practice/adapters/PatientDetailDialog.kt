@@ -23,7 +23,7 @@ class PatientDetailDialog(
         val textViewEmail = findViewById<TextView>(R.id.textViewEmail)
         val textViewRoom = findViewById<TextView>(R.id.textViewRoom)
         val textViewAge = findViewById<TextView>(R.id.textViewAge)
-        val buttonGoBack = findViewById<Button>(R.id.buttonGoBackDialog)
+        val buttonGoBack = findViewById<Button>(R.id.buttonAddAndGoBack)
 
         // Set patient information in TextViews
         textViewName.text = patient.name

@@ -11,31 +11,29 @@
         android:id="@+id/textViewName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Patient Name"
+        android:text="User information"
         android:textSize="18sp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/textViewEmail"
+    <EditText
+        android:id="@+id/editTextFirstname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Email Address" />
+        android:ems="10"
+        android:inputType="text"
+        android:text="Firstname" />
 
-    <TextView
-        android:id="@+id/textViewRoom"
+    <EditText
+        android:id="@+id/editTextLastname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Room Number" />
-
-    <TextView
-        android:id="@+id/textViewAge"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Age" />
+        android:ems="10"
+        android:inputType="text"
+        android:text="Lastname" />
 
     <Button
         android:id="@+id/buttonAddAndGoBack"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Go Back" />
+        android:text="@string/btn_add" />
 </LinearLayout>

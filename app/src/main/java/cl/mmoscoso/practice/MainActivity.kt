@@ -2,18 +2,19 @@ package cl.mmoscoso.practice
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import cl.mmoscoso.practice.R
-import cl.mmoscoso.practice.adapters.PatientAdapterRecyclerView
-import cl.mmoscoso.practice.entity.Patient
+import androidx.appcompat.widget.Toolbar
 
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.card_container)
+        setSupportActionBar(findViewById(R.id.toolbar))
 
         // Access the individual card views by their unique IDs
         val card1View = findViewById<View>(R.id.card1)
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         val card11View = findViewById<View>(R.id.card11)
         val card12View = findViewById<View>(R.id.card12)
         val card13View = findViewById<View>(R.id.card13)
+        val card14View = findViewById<View>(R.id.card14)
 
         card1View.findViewById<TextView>(R.id.cardTextViewTitle).setText(R.string.card_title_patients)
         card2View.findViewById<TextView>(R.id.cardTextViewTitle).setText(R.string.card_title_touch)
@@ -43,6 +45,7 @@ class MainActivity : AppCompatActivity() {
         card11View.findViewById<TextView>(R.id.cardTextViewTitle).setText(R.string.card_title_accelerometer_change_color)
         card12View.findViewById<TextView>(R.id.cardTextViewTitle).setText(R.string.card_title_environment)
         card13View.findViewById<TextView>(R.id.cardTextViewTitle).setText(R.string.card_title_changer)
+        card14View.findViewById<TextView>(R.id.cardTextViewTitle).setText(R.string.card_title_room)
 
         card1View.findViewById<TextView>(R.id.cardTextViewDescription).setText(R.string.card_desc_patients)
         card2View.findViewById<TextView>(R.id.cardTextViewDescription).setText(R.string.card_desc_touch)
@@ -57,116 +60,140 @@ class MainActivity : AppCompatActivity() {
         card11View.findViewById<TextView>(R.id.cardTextViewDescription).setText(R.string.card_desc_accelerometer_change_color)
         card12View.findViewById<TextView>(R.id.cardTextViewDescription).setText(R.string.card_desc_environment)
         card13View.findViewById<TextView>(R.id.cardTextViewDescription).setText(R.string.card_desc_changer)
+        card14View.findViewById<TextView>(R.id.cardTextViewDescription).setText(R.string.card_desc_room)
 
-        card1View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener{ view ->
-            goPatientApp(view)
+        card1View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener{
+            goPatientApp()
         }
-        card2View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener{ view ->
-            goTouchEventApp(view)
+        card2View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener{
+            goTouchEventApp()
         }
-        card3View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener{ view ->
-            goSensorApp(view)
+        card3View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener{
+            goSensorApp()
         }
-        card4View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener{ view ->
-            goCreatePatientPractice(view)
+        card4View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener{
+            goCreatePatientPractice()
         }
-        card5View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener { view ->
-            goMediaPlayerActivity(view)
+        card5View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener {
+            goMediaPlayerActivity()
         }
-        card6View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener { view ->
-            goCustomItemPatientActivity(view)
+        card6View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener {
+            goCustomItemPatientActivity()
         }
-        card7View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener { view ->
-            goCustomTabs(view)
+        card7View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener {
+            goCustomTabs()
         }
-        card8View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener { view ->
-            goIntentOptions(view)
+        card8View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener {
+            goIntentOptions()
         }
-        card9View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener { view ->
-            goActivityRecyclerView(view)
-        }
-
-        card10View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener { view ->
-            goLastLocationActivityView(view)
+        card9View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener {
+            goActivityRecyclerView()
         }
 
-        card11View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener { view ->
-            goAccelerometerChangeColor(view)
-        }
-        card12View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener { view ->
-            goEnvironmentActivity(view)
-        }
-        card13View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener { view ->
-            goChangerActivity(view)
+        card10View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener {
+            goLastLocationActivityView()
         }
 
+        card11View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener {
+            goAccelerometerChangeColor()
+        }
+        card12View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener {
+            goEnvironmentActivity()
+        }
+        card13View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener {
+            goChangerActivity()
+        }
+        card14View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener {
+            goUserRoomExampleActivity()
+        }
 
 
     }
 
-    fun goPatientApp(view: View) {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.go_preference -> {
+                // Handle the "Settings" menu item click
+                val preference = Intent(this, SettingsActivity::class.java)
+                startActivity(preference)
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
+    }
+
+    fun goPatientApp() {
         val intentPatientList = Intent(this, PatientListActivity::class.java)
         startActivity(intentPatientList)
     }
-    fun goTouchEventApp(view: View) {
+    fun goTouchEventApp() {
         val touchApp = Intent(this, TouchEventActivity::class.java)
         startActivity(touchApp)
     }
-    fun goSensorApp(view: View) {
+    fun goSensorApp() {
         val sensorApp = Intent(this, SensorDetectionActivity::class.java)
         startActivity(sensorApp)
     }
 
-    fun goCreatePatientPractice(view: View) {
+    fun goCreatePatientPractice() {
         val createActivity = Intent(this, CreatePatient::class.java)
         startActivity(createActivity)
     }
 
-    fun goTabApp(view: View) {
+    fun goTabApp() {
         val inventory = Intent(this, Inventory::class.java)
         startActivity(inventory)
 
     }
-    fun goMediaPlayerActivity(view: View) {
+    fun goMediaPlayerActivity() {
         val media = Intent(this, MediaActivity::class.java)
         startActivity(media)
     }
 
-    fun goCustomItemPatientActivity(view: View) {
+    fun goCustomItemPatientActivity() {
         val customItem = Intent(this, PatientListCustomItem::class.java)
         startActivity(customItem)
     }
-    fun goCustomTabs(view: View) {
+    fun goCustomTabs() {
         val customItem = Intent(this, Inventory::class.java)
         startActivity(customItem)
     }
 
-    fun goIntentOptions(view: View) {
+    fun goIntentOptions() {
         val customItem = Intent(this, IntentTestActivity::class.java)
         startActivity(customItem)
     }
 
-    fun goActivityRecyclerView(view: View) {
+    fun goActivityRecyclerView() {
         val recycleViewActivity = Intent(this, PatientListRecyclerViewActivity::class.java)
         startActivity(recycleViewActivity)
     }
 
-    fun goLastLocationActivityView(view: View) {
+    fun goLastLocationActivityView() {
         val  getLastLocation = Intent(this, LastLocationActivity::class.java)
         startActivity(getLastLocation)
     }
 
-    fun goAccelerometerChangeColor(view: View) {
+    fun goAccelerometerChangeColor() {
         val  changeColor = Intent(this, ColorChangerActivity::class.java)
         startActivity(changeColor)
     }
-    fun goEnvironmentActivity(view: View) {
+    fun goEnvironmentActivity() {
         val  environmentActivity = Intent(this, EnvironmentSensorsActivity::class.java)
         startActivity(environmentActivity)
     }
-    fun goChangerActivity(view: View) {
+    fun goChangerActivity() {
         val  changerActivity = Intent(this, ChangerActivity::class.java)
         startActivity(changerActivity)
     }
 
+    fun goUserRoomExampleActivity() {
+        val  userRoomExampleActivity = Intent(this, UserRoomExampleActivity::class.java)
+        startActivity(userRoomExampleActivity)
+    }
 }

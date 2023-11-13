@@ -32,7 +32,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginBottom="16dp"
-            android:onClick="changeAdapter"
             android:text="Change Adapter" />
     </LinearLayout>
 

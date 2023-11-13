@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Patients</string>
+    <string name="app_name">Practice Example App</string>
     <string name="button_go_patient_apps">App Patients</string>
     <string name="button_go_touch_apps">Touch Event App</string>
     <string name="button_go_sensor_apps">Sensor App</string>
@@ -21,6 +21,7 @@
     <string name="card_title_accelerometer_change_color">Change Color Activity</string>
     <string name="card_title_environment">Environment sensors.</string>
     <string name="card_title_changer">Changer task.</string>
+    <string name="card_title_room">User Room example.</string>
 
     <string name="card_desc_patients">Activity with ListView and custom adapters. CRUD of patients.</string>
     <string name="card_desc_touch">Activity with the listener of several touch events.</string>
@@ -35,11 +36,13 @@
     <string name="card_desc_accelerometer_change_color">Activity that change the color of background according the changes in the accelerometer sensor.</string>
     <string name="card_desc_environment">Activity that shows the values of environment sensors.</string>
     <string name="card_desc_changer">Activity that execute a task every specifict period of time.</string>
+    <string name="card_desc_room">Activity that work with Room for database management. We will work with User (id,firstname and lastname) like in the documentation.</string>
 
     <string name="message_delete_patient">"Are you sure you want to delete this item?"</string>
     <string name="btn_delete">Delete</string>
     <string name="btn_cancel">Cancel</string>
     <string name="btn_edit">Edit</string>
+    <string name="btn_add">Add</string>
     <string name="btn_speedup">Speed Up</string>
     <string name="sensor_ambient">Ambient Temperature: </string>
     <string name="sensor_light">Light Sensor: </string>
@@ -56,6 +59,7 @@
     <string name="reply_title">Default reply action</string>
 
     <!-- Sync Preferences -->
+    <string name="max_point_title">The Max score</string>
     <string name="sync_title">Sync email periodically</string>
     <string name="attachment_title">Download incoming attachments</string>
     <string name="attachment_summary_on">Automatically download attachments for incoming emails

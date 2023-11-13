@@ -34,13 +34,12 @@ class PatientDetailActivity : AppCompatActivity() {
 
 
 
-        if (patient != null) {
-            textName.text = patient.name
-            textEmail.text = patient.email
-            textRoom.text = patient.room
-            textAge.setText(patient.age.toString())
-        }
-                textName.setOnClickListener(){
+        textName.text = patient.name
+        textEmail.text = patient.email
+        textRoom.text = patient.room
+        textAge.setText(patient.age.toString())
+
+        textName.setOnClickListener(){
             Toast.makeText(this,patient.room,Toast.LENGTH_LONG).show()
         }
 

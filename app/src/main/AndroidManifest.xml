@@ -20,6 +20,9 @@
         android:theme="@style/Theme.Patients"
         tools:targetApi="31">
         <activity
+            android:name=".UserRoomExampleActivity"
+            android:exported="false" />
+        <activity
             android:name=".ChangerActivity"
             android:exported="false" />
         <activity
