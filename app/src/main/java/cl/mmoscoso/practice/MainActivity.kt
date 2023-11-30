@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         val card12View = findViewById<View>(R.id.card12)
         val card13View = findViewById<View>(R.id.card13)
         val card14View = findViewById<View>(R.id.card14)
+        val card15View = findViewById<View>(R.id.card15)
 
         card1View.findViewById<TextView>(R.id.cardTextViewTitle).setText(R.string.card_title_patients)
         card2View.findViewById<TextView>(R.id.cardTextViewTitle).setText(R.string.card_title_touch)
@@ -46,6 +47,7 @@ class MainActivity : AppCompatActivity() {
         card12View.findViewById<TextView>(R.id.cardTextViewTitle).setText(R.string.card_title_environment)
         card13View.findViewById<TextView>(R.id.cardTextViewTitle).setText(R.string.card_title_changer)
         card14View.findViewById<TextView>(R.id.cardTextViewTitle).setText(R.string.card_title_room)
+        card15View.findViewById<TextView>(R.id.cardTextViewTitle).setText(R.string.card_title_api)
 
         card1View.findViewById<TextView>(R.id.cardTextViewDescription).setText(R.string.card_desc_patients)
         card2View.findViewById<TextView>(R.id.cardTextViewDescription).setText(R.string.card_desc_touch)
@@ -61,6 +63,7 @@ class MainActivity : AppCompatActivity() {
         card12View.findViewById<TextView>(R.id.cardTextViewDescription).setText(R.string.card_desc_environment)
         card13View.findViewById<TextView>(R.id.cardTextViewDescription).setText(R.string.card_desc_changer)
         card14View.findViewById<TextView>(R.id.cardTextViewDescription).setText(R.string.card_desc_room)
+        card15View.findViewById<TextView>(R.id.cardTextViewDescription).setText(R.string.card_desc_api)
 
         card1View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener{
             goPatientApp()
@@ -106,6 +109,10 @@ class MainActivity : AppCompatActivity() {
         card14View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener {
             goUserRoomExampleActivity()
         }
+        card15View.findViewById<TextView>(R.id.cardButtonNavigate).setOnClickListener {
+            goAPIRequestActivity()
+        }
+
 
 
     }
@@ -195,5 +202,9 @@ class MainActivity : AppCompatActivity() {
     fun goUserRoomExampleActivity() {
         val  userRoomExampleActivity = Intent(this, UserRoomExampleActivity::class.java)
         startActivity(userRoomExampleActivity)
+    }
+    fun goAPIRequestActivity(){
+        val  apiRestActivitty = Intent(this, APIRestActivity::class.java)
+        startActivity(apiRestActivitty)
     }
 }

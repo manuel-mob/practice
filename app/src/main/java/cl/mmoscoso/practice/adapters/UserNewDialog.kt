@@ -12,6 +12,7 @@ import cl.mmoscoso.practice.R
 import cl.mmoscoso.practice.UserRoomExampleActivity
 import cl.mmoscoso.practice.database.AppDatabase
 import cl.mmoscoso.practice.entity.Patient
+import cl.mmoscoso.practice.entity.Product
 import cl.mmoscoso.practice.entity.User
 
 class UserNewDialog(
@@ -22,6 +23,8 @@ class UserNewDialog(
 
     private lateinit var firstname : EditText
     private lateinit var lastname : EditText
+    private lateinit var email : EditText
+    private lateinit var address : EditText
     private lateinit var db : AppDatabase
     private var id : Int = idUser
     private var act : UserRoomExampleActivity = act
@@ -33,6 +36,8 @@ class UserNewDialog(
 
         firstname = findViewById(R.id.editTextFirstname)
         lastname = findViewById(R.id.editTextLastname)
+        email = findViewById(R.id.editTextEmail)
+        address = findViewById(R.id.editTextAddress)
 
         db = Room.databaseBuilder(
             context,
@@ -44,8 +49,10 @@ class UserNewDialog(
         // Set a click listener for the "Go Back" button to dismiss the dialog
         buttonAddAndGoBack.setOnClickListener {
             //Add user to database
+
+
             db.userDao().insertAll(
-                User(id,firstname.text.toString(),lastname.text.toString())
+                User(id,firstname.text.toString(),lastname.text.toString(),email.text.toString(),address.text.toString())
             )
             act.refreshFromDatabase()
             dismiss()

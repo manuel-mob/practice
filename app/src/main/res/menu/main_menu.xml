@@ -7,5 +7,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:showAsAction="never"
-        android:title="go_preference" />
+        android:title="@string/btn_go_preferences" />
+    <item
+        android:id="@+id/go_newmenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:showAsAction="never"
+        android:title="@string/btn_go_newproduct"/>
 </menu>

@@ -2,6 +2,7 @@ package cl.mmoscoso.practice
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.ContextMenu
 import android.view.MenuItem
 import android.view.View
@@ -14,7 +15,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.room.Room
 import cl.mmoscoso.practice.adapters.UserNewDialog
 import cl.mmoscoso.practice.database.AppDatabase
+import cl.mmoscoso.practice.entity.Product
 import cl.mmoscoso.practice.entity.User
+import cl.mmoscoso.practice.entity.UserWithProducts
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
@@ -34,13 +37,9 @@ class UserRoomExampleActivity : AppCompatActivity() {
         db = Room.databaseBuilder(
             applicationContext,
             AppDatabase::class.java, "database-name"
-        ).allowMainThreadQueries().build()
-
-       listUsers = mutableListOf(
-            User(1, "Manuel", "Moscoso"),
-            User(2, "Alejandro", "Dominguez")
-            // Add more users as needed
-        )
+        ).allowMainThreadQueries()
+            .fallbackToDestructiveMigration()
+            .build()
 
         val list : List<User> = db.userDao().getAll()
         listUsers = list.toMutableList()
@@ -48,21 +47,29 @@ class UserRoomExampleActivity : AppCompatActivity() {
         adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listUsers.map { it.firstName })
         Toast.makeText(this,"Hi: "+listUsers.size.toString(),Toast.LENGTH_LONG).show()
         listViewUsers.adapter = adapter
-        /*listUsers.forEach { item ->
-            db.userDao().insertAll(item)
-        }*/
-
         list.size
 
         val fab : FloatingActionButton = findViewById(R.id.idFabUser)
+
         fab.setOnClickListener{
-            val dialog = UserNewDialog(this,list.size+1,this)
+
+            //Get the max ID
+            var tempMax = 0;
+            list.forEach { data ->
+                if (data.uid > tempMax ) {
+                    tempMax = data.uid
+                }
+            }
+            val dialog = UserNewDialog(this,tempMax+1,this)
             dialog.show()
         }
 
 
         registerForContextMenu(listViewUsers)
     }
+
+
+
     override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
         super.onCreateContextMenu(menu, v, menuInfo)
         menuInflater.inflate(R.menu.patient_list_menu, menu)
@@ -95,6 +102,24 @@ class UserRoomExampleActivity : AppCompatActivity() {
                 val position = info.position
                 Toast.makeText(this,"User:"+position.toString(),Toast.LENGTH_LONG).show()
                 showDeleteConfirmationDialog(position)
+                true
+            }
+
+            R.id.action_new_product -> {
+                // Handle the "new product" option
+                val info = item.menuInfo as AdapterView.AdapterContextMenuInfo
+                val position = info.position
+                Toast.makeText(this,"User:"+position.toString(),Toast.LENGTH_LONG).show()
+                var listProduct : MutableList<Product>
+                listProduct = mutableListOf(
+                    Product(0,listUsers[position].uid,"Coca Cola","Bebestible","1686","27/11/2023")
+                )
+                UserWithProducts(
+                    listUsers[position],
+                    listProduct
+                )
+                db.productDao().insertAll(listProduct[0])
+                refreshFromDatabase()
                 true
             }
             // Add cases for other options as needed
@@ -136,6 +161,11 @@ class UserRoomExampleActivity : AppCompatActivity() {
 
     public fun refreshFromDatabase(){
         val list : List<User> = db.userDao().getAll()
+        val listUserWith : List<UserWithProducts> = db.userDao().getUsersWithPlaylists()
+        listUserWith.forEach {
+            Log.i("UserRoomExampleActivity","Data user:"+it.user.firstName)
+            Log.i("UserRoomExampleActivity","Data products of user:"+it.products.toString())
+        }
         Toast.makeText(this,"Hi: "+list.size.toString(),Toast.LENGTH_LONG).show()
         listUsers = list.toMutableList()
         Toast.makeText(this,"Hi: "+listUsers.size.toString(),Toast.LENGTH_LONG).show()

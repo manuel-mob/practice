@@ -34,6 +34,7 @@ class PatientListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_patient_list)
 
+
         // Initialize UI elements
         listViewPatients = findViewById(R.id.listViewPatients)
 
@@ -133,6 +134,10 @@ class PatientListActivity : AppCompatActivity() {
     }
 
     fun goCreatePatient() {
+        val intent = Intent(this, PatientRegistrationActivity::class.java)
+        startActivityForResult(intent, REQUEST_REGISTER)
+    }
+    fun goCreatePatient(view : View) {
         val intent = Intent(this, PatientRegistrationActivity::class.java)
         startActivityForResult(intent, REQUEST_REGISTER)
     }

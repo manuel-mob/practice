@@ -4,7 +4,9 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Transaction
 import cl.mmoscoso.practice.entity.User
+import cl.mmoscoso.practice.entity.UserWithProducts
 
 
 @Dao
@@ -21,6 +23,10 @@ interface UserDao {
 
     @Insert
     fun insertAll(vararg users: User)
+
+    @Transaction
+    @Query("SELECT * FROM user")
+    fun getUsersWithPlaylists(): List<UserWithProducts>
 
     @Delete
     fun delete(user: User)

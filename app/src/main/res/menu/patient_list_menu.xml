@@ -12,5 +12,10 @@
         android:id="@+id/action_delete"
         android:title="Delete"
         />
+
+    <item
+        android:id="@+id/action_new_product"
+        android:title="New product"
+        />
     <!-- Add more items as needed -->
 </menu>
