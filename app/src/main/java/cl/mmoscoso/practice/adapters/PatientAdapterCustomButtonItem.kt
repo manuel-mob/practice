@@ -1,14 +1,11 @@
 package cl.mmoscoso.practice.adapters
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
-import androidx.core.app.ActivityCompat.startActivityForResult
-import cl.mmoscoso.practice.PatientEditActivity
 import cl.mmoscoso.practice.R
 import cl.mmoscoso.practice.entity.Patient
 

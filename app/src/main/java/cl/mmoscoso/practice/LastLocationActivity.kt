@@ -1,15 +1,10 @@
 package cl.mmoscoso.practice
 
-import android.Manifest
-import android.annotation.SuppressLint
 import android.content.pm.PackageManager
-import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.app.ActivityCompat
+import cl.mmoscoso.practice.R
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 

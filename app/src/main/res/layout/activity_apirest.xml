@@ -9,6 +9,12 @@
     tools:context=".APIRestActivity">
 
 
+    <TextView
+        android:id="@+id/idNetworkState"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+
     <Button
         android:id="@+id/getRequest"
         android:layout_width="fill_parent"

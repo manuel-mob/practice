@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import cl.mmoscoso.practice.entity.Patient
 
@@ -34,12 +35,16 @@ class PatientRegistrationActivity : AppCompatActivity() {
             val age = editTextAge.text.toString().toIntOrNull() ?: 0 // Default to 0 if parsing fails
 
             // Create a new Patient object
-            val patient = Patient(name, email, room, age, emptyList())
-
-            val resultIntent = Intent()
-            resultIntent.putExtra("new", patient)
-            setResult(RESULT_OK, resultIntent)
-            finish() // Close the registration activity.
+            if (name.length < 1 || email.length < 1 || room.length < 1) {
+                Toast.makeText(this,"You must include some information",Toast.LENGTH_LONG).show();
+            }
+            else {
+                val patient = Patient(name, email, room, age, emptyList())
+                val resultIntent = Intent()
+                resultIntent.putExtra("new", patient)
+                setResult(RESULT_OK, resultIntent)
+                finish() // Close the registration activity.
+            }
         }
     }
 }

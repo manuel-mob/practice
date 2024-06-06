@@ -1,4 +1,4 @@
-package cl.mmoscoso.practice
+package cl.mmoscoso.practice;
 
 import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity

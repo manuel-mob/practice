@@ -2,6 +2,7 @@ package cl.mmoscoso.practice
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.ContextMenu
 import android.view.MenuItem
 import android.view.View
@@ -58,7 +59,7 @@ class PatientListActivity : AppCompatActivity() {
         // Create an ArrayAdapter to populate the ListView
 //        adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, patients.map { it.email })
         adapter = ArrayAdapter<Patient>(this, android.R.layout.simple_list_item_1, patients)
-
+        adapterItems = PatientListAdapter(this, R.layout.list_item_patient, patients)
         listViewPatients.adapter = adapter
 
 
@@ -148,9 +149,10 @@ class PatientListActivity : AppCompatActivity() {
     }
 
     private fun showDeleteConfirmationDialog(itemPosition: Int) {
+        Log.i(this.toString(),itemPosition.toString())
         val builder = AlertDialog.Builder(this)
         builder.setMessage(R.string.message_delete_patient)
-        builder.setPositiveButton(R.string.btn_delete) { dialog, itemPosition ->
+        builder.setPositiveButton(R.string.btn_delete) { dialog, _ ->
             // Handle the delete action here
             deleteItem(itemPosition)
         }
@@ -161,8 +163,14 @@ class PatientListActivity : AppCompatActivity() {
     }
 
     private fun deleteItem(itemPosition: Int) {
+        Log.i(this.toString(),itemPosition.toString())
         patients.removeAt(itemPosition)
-        adapterItems.notifyDataSetChanged()
+        if (!listOption) {
+            adapterItems.notifyDataSetChanged()
+        } else {
+            adapter.notifyDataSetChanged()
+        }
+
     }
 
 

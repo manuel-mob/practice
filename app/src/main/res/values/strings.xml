@@ -11,7 +11,7 @@
     <string name="card_title_patients">List of patients</string>
     <string name="card_title_touch">Touch events</string>
     <string name="card_title_sensor">List of sensors</string>
-    <string name="card_title_practice">Ejemplo XML Activity</string>
+    <string name="card_title_practice">Exampl XML Activity</string>
     <string name="card_title_mediaplayer">Media player</string>
     <string name="card_title_customitem">Custom Item</string>
     <string name="card_title_theme">Custom tabs example</string>
@@ -27,7 +27,7 @@
     <string name="card_desc_patients">Activity with ListView and custom adapters. CRUD of patients.</string>
     <string name="card_desc_touch">Activity with the listener of several touch events.</string>
     <string name="card_desc_sensor">Activity with the list of the sensors presents in the device.</string>
-    <string name="card_desc_practice">El ejemplo cuenta con un EditText, Button y una lista que almacena lo que guardas</string>
+    <string name="card_desc_practice">Activity with EditText, Button and a ListView that store new values</string>
     <string name="card_desc_mediaplayer">Activity with MediaPlayer and some controls with buttons</string>
     <string name="card_desc_customitem">Activity with Custom item with a button for interact</string>
     <string name="card_desc_theme">Example from Android Studio</string>
@@ -73,4 +73,5 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="info_information_lan_lot">This is an example that how can you get the last location of devices.</string>
 </resources>

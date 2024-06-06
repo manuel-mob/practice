@@ -6,13 +6,10 @@ import android.os.Bundle
 import android.view.Window
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import androidx.room.Room
 import cl.mmoscoso.practice.R
 import cl.mmoscoso.practice.UserRoomExampleActivity
 import cl.mmoscoso.practice.database.AppDatabase
-import cl.mmoscoso.practice.entity.Patient
-import cl.mmoscoso.practice.entity.Product
 import cl.mmoscoso.practice.entity.User
 
 class UserNewDialog(

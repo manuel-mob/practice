@@ -72,4 +72,5 @@
     <string name="attachment_title">Descargar adjuntos</string>
     <string name="attachment_summary_on">Descarga automatica de adjuntos en correo.</string>
     <string name="attachment_summary_off">Descarga manual de adjuntos</string>
+    <string name="info_information_lan_lot">Este es un ejemplo de como puedes obtener la ultima localizacion del equipo.</string>
 </resources>

@@ -30,4 +30,16 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/latTextView" />
+
+    <TextView
+        android:id="@+id/information_lan_lot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="104dp"
+        android:width="200dp"
+        android:text="@string/info_information_lan_lot"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lonTextView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
